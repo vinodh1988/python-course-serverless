@@ -3,15 +3,17 @@
 a=889
 def outer(param):
     print(param)
-    global a
     a=230 #local scope
     print(a)
     def inner(inside):
+        nonlocal a
+        a=350
         print("proccessing inner and outer together {} {} {}".format(param,inside,a))
+    inner(30)
     print('outer',a)
     return inner
 
-outer("India")("Asia")
+outer("India")("Asia")  #need might just to call the inner function only once
 
 store=outer("China")
 
